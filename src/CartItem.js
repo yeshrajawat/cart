@@ -2,16 +2,7 @@ import React from 'react';
 
 class CartItem extends React.Component{
     
-    constructor(){
-        super();
-
-        this.state = {
-            title:"Mobile Phone",
-            price: "999",
-            qty:1,
-            img:''
-        }
-    }
+   
 
     increaseQuantity = ()=>{
         //Set State form 1
@@ -43,22 +34,21 @@ class CartItem extends React.Component{
     
     
     render(){
-
-        const {title,price,qty} = this.state;
+        const {qty,price,title} = this.props.product;
 
 
         return(
             <div className='cart-item'>
                
                 <div className='left-block'>
-                    <img  src='' style={styles.image} alt="Product" />
+                    <img  src='' style={styles.image} alt="" />
                 </div>
                
                 <div className='right-block'>
 
                 <div>{title}</div>
                
-                <div>Rs {price}</div>
+                <div>Rs {price*qty}</div>
                
                 <div>Qty: {qty}</div>
                
@@ -67,19 +57,20 @@ class CartItem extends React.Component{
                     <img src='https://cdn-icons-png.flaticon.com/512/992/992651.png'
                         className='action-icons'
                         alt='increase'
-                        onClick={this.increaseQuantity}
+                        onClick={()=> this.props.onIncreaseQuantity(this.props.product)}
 
                     />
 
                     <img src='https://cdn-icons-png.flaticon.com/512/992/992683.png' 
                     className='action-icons' 
                     alt='decrease'
-                    onClick={this.decreaseQuantity.bind(this)}
+                    onClick={ ()=> this.props.onDecreaseQuantity(this.props.product)}
                     />
 
                     <img src='https://cdn-icons-png.flaticon.com/512/1214/1214428.png'
                     className='action-icons' 
                     alt='delete'
+                    onClick={()=>this.props.deleteProduct(this.props.product)}
                     />
                
                 </div>
