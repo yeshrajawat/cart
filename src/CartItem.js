@@ -1,41 +1,10 @@
 import React from 'react';
 
-class CartItem extends React.Component{
+const  CartItem = (props)=>  {
     
-   
 
-    increaseQuantity = ()=>{
-        //Set State form 1
-
-        // this.setState({
-        //     qty:this.state.qty+1
-        // });
-
-        //Set State form 2
-        this.setState((prevState) => {
-                return {
-                    qty:prevState.qty+1
-                }
-        })
-    }
-
-    decreaseQuantity = ()=>{
-
-        if(this.state.qty>0){
-           this.setState((prevState) => {
-               return {
-                   qty:prevState.qty-1
-               }
-           })
-        } 
-        
-    }
-    
-    
-    
-    render(){
-        const {qty,price,title} = this.props.product;
-
+        const {qty,price,title} = props.product;
+        console.log( 'CartItem component console ',props);
 
         return(
             <div className='cart-item'>
@@ -57,20 +26,20 @@ class CartItem extends React.Component{
                     <img src='https://cdn-icons-png.flaticon.com/512/992/992651.png'
                         className='action-icons'
                         alt='increase'
-                        onClick={()=> this.props.onIncreaseQuantity(this.props.product)}
+                        onClick={()=> props.onIncreaseQuantity(props.product)}
 
                     />
 
                     <img src='https://cdn-icons-png.flaticon.com/512/992/992683.png' 
                     className='action-icons' 
                     alt='decrease'
-                    onClick={ ()=> this.props.onDecreaseQuantity(this.props.product)}
+                    onClick={ ()=> props.onDecreaseQuantity(props.product)}
                     />
 
                     <img src='https://cdn-icons-png.flaticon.com/512/1214/1214428.png'
                     className='action-icons' 
                     alt='delete'
-                    onClick={()=>this.props.deleteProduct(this.props.product)}
+                    onClick={()=>  props.deleteProduct(props.product)}
                     />
                
                 </div>
@@ -80,7 +49,7 @@ class CartItem extends React.Component{
             </div>
         );
     }
-}
+
 const styles={
     image:{
         height:110,
